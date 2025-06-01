@@ -16,7 +16,7 @@ const requestSchema = {
       },
     },
   },
-}
+} as const;
 
 
 const NWS_API_BASE = "https://api.weather.gov";
@@ -62,7 +62,7 @@ async function makeNWSRequest<T>(url: string): Promise<T | null> {
   }
 }
 
-const tool = async (request: CallToolRequest) => {
+const handler = async (request: CallToolRequest) => {
   const { latitude, longitude } = request.params.arguments as { latitude: number, longitude: number };
 
   // Get grid point data
@@ -140,7 +140,8 @@ const tool = async (request: CallToolRequest) => {
   };
 }
 
+// TODO: handler に適切な型定義をつける
 export default {
   requestSchema,
-  tool,
+  handler,
 }

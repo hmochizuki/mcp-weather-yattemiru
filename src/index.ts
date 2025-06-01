@@ -32,7 +32,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
   if (!toolEntry) {
     throw new Error("Unknown prompt");
   }
-  return await toolEntry.tool(request);
+  return await toolEntry.handler(request);
 });
 
 const transport = new StdioServerTransport();

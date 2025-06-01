@@ -35,7 +35,7 @@ async function makeNWSRequest(url) {
         return null;
     }
 }
-const tool = async (request) => {
+const handler = async (request) => {
     const { latitude, longitude } = request.params.arguments;
     // Get grid point data
     const pointsUrl = `${NWS_API_BASE}/points/${latitude.toFixed(4)},${longitude.toFixed(4)}`;
@@ -102,7 +102,8 @@ const tool = async (request) => {
         ],
     };
 };
+// TODO: handler に適切な型定義をつける
 export default {
     requestSchema,
-    tool,
+    handler,
 };
